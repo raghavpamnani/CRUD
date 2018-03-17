@@ -13,14 +13,16 @@ class ParticipantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
 
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $view_participants = Imageupload::all();
+        return view('/viewparticipant')->with('view_participants', $view_participants);
     }
 
     public function addparticipant()
@@ -67,7 +69,7 @@ class ParticipantController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -101,6 +103,12 @@ class ParticipantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $taskdelete = Imageupload::findOrFail($id);
+
+        $taskdelete->delete();
+
+        Session::flash('flash_message', 'Task successfully deleted!');
+
+        return redirect('/viewparticipant');
     }
 }

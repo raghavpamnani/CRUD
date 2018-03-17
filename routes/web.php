@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/addparticipant', 'ParticipantController@addparticipant');
 
 Route::post('/participant/store', 'ParticipantController@store');
+
+Route::get('/viewparticipant', 'ParticipantController@index');
+
+Route::get('/participant/delete/{id}','ParticipantController@destroy');
