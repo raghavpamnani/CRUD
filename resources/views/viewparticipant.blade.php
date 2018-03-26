@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('viewuser')
 
 @section('content')
 <div class="container">
@@ -9,7 +10,7 @@
                 <div class="card-body">
                     @if (session('flash_message'))
                         <div class="alert alert-success">
-                            {{ session('flash_messagem') }}
+                            {{ session('flash_message') }}
                         </div>
                     @endif
                 
@@ -20,7 +21,7 @@
                     <td>{{$row->firstname}}</td>
                     <td>{{$row->filename}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary">View</button>
+                        <a href="{{ URL::to('participant/show',$row->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#myModal">View</a>
                         <button type="button" class="btn btn-success">Edit</button>
                         <a href="{{ URL::to('participant/delete',$row->id) }}" class="btn btn-danger">Delete</a>
                         <!-- <button type="button" class="btn btn-danger">Delete</button> -->

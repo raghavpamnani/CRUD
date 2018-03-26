@@ -51,8 +51,26 @@ class ParticipantController extends Controller
         // validate the data
     $this->validate($request, array(
         'firstname' => 'required|max:255',
-        'filename'  => 'required'
+        'filename'  => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
     ));
+
+    // if ($request->hasFile('filename')) {
+    //     $image = $request->file('filename');
+    //     $name = time().'.'.$image->getClientOriginalExtension();
+    //     $destinationPath = public_path('/images');
+    //     $image->move($destinationPath, $name);
+    // }
+
+    // if (($request->has('filename'))) {
+    //     $files = $request->file('filename');
+
+    //     $destinationPath = storage_path() . '/app/public/';
+    //         $fileName = $files->getClientOriginalName();
+    //         $extension = $files->getClientOriginalExtension();
+    //         $storeName = $fileName . '.' . $extension;
+    //         // Store the file in the disk 
+    //         $files->move($destinationPath, $storeName);
+    // }
 
     // store in the database
     $student = Imageupload::create($request->all());
@@ -68,8 +86,12 @@ class ParticipantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        
+    { 
+       $usersview = Imageupload::find($id);
+    //    return view('viewuser')->compact('usersview');
+    //    return View::make('viewuser')
+    //                 ->with(compact('$usersview'));
+           return View::make('viewuser', compact('usersview')); 
     }
 
     /**
@@ -81,6 +103,7 @@ class ParticipantController extends Controller
     public function edit($id)
     {
         //
+       
     }
 
     /**

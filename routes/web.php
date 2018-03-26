@@ -26,3 +26,5 @@ Route::post('/participant/store', 'ParticipantController@store');
 Route::get('/viewparticipant', 'ParticipantController@index');
 
 Route::get('/participant/delete/{id}','ParticipantController@destroy');
+
+Route::get('/participant/show/{id}','ParticipantController@show');
