@@ -61,14 +61,12 @@ class ParticipantController extends Controller
     //     $image->move($destinationPath, $name);
     // }
 
-    // if (($request->has('filename'))) {
-    //     $files = $request->file('filename');
-
-    //     $destinationPath = storage_path() . '/app/public/';
+    // if ($request->has('filename')) {
+    //         $files = $request->file('filename');
+    //         $destinationPath = storage_path() . '/app/public/';
     //         $fileName = $files->getClientOriginalName();
     //         $extension = $files->getClientOriginalExtension();
     //         $storeName = $fileName . '.' . $extension;
-    //         // Store the file in the disk 
     //         $files->move($destinationPath, $storeName);
     // }
 
@@ -85,13 +83,15 @@ class ParticipantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,Request $request)
     { 
-       $usersview = Imageupload::find($id);
-    //    return view('viewuser')->compact('usersview');
+         
+          return $usersview = Imageupload::find($id);
+          return view('viewuser',compact('usersview'));
     //    return View::make('viewuser')
     //                 ->with(compact('$usersview'));
-           return View::make('viewuser', compact('usersview')); 
+          //return view('/viewparticipant')->with('usersview', $usersview);
+
     }
 
     /**

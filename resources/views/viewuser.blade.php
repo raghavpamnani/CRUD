@@ -11,9 +11,13 @@
             <!-- Modal body -->
             <div class="modal-body">
                     <table class="table table-bordered"> 
-                    <tr>
-                            
+                        {{--  @foreach($usersview as $row)  --}}
+                    {{--  <tr>
+                      <td>{{$row->id}}</td>
+                      <td>{{$row->firstname}}</td>
+                      <td>{{$row->filename}}</td>  
                     </tr>
+                    @endforeach  --}}
                     </table>
             </div>
       
@@ -25,3 +29,5 @@
           </div>
         </div>
 </div>
+
+
