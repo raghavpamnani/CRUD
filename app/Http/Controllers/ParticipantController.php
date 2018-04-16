@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Imageupload;
+use Illuminate\Support\Facades\Storage;
 
 class ParticipantController extends Controller
 {
@@ -61,18 +62,23 @@ class ParticipantController extends Controller
     //     $image->move($destinationPath, $name);
     // }
 
-    // if ($request->has('filename')) {
-    //         $files = $request->file('filename');
-    //         $destinationPath = storage_path() . '/app/public/';
-    //         $fileName = $files->getClientOriginalName();
-    //         $extension = $files->getClientOriginalExtension();
-    //         $storeName = $fileName . '.' . $extension;
-    //         $files->move($destinationPath, $storeName);
-    // }
+    if ($request->has('filename')) {
+            $files = $request->file('filename');
+            // $destinationPath = storage_path() . '/app/public/';
+            // $fileName = $files->getClientOriginalName();
+            // $extension = $files->getClientOriginalExtension();
+            // $storeName = $fileName . '.' . $extension;
+            // $files->move($destinationPath, $storeName);
+           $file_name =  Storage::put('public/new',$request->file('filename'));
+           $file_name = substr($file_name,6);
+    }
 
     // store in the database
-    $student = Imageupload::create($request->all());
-    $student->save();
+
+    $imageupload = new Imageupload;
+    $imageupload->firstname = $request->firstname;
+    $imageupload->filename = $file_name;
+    $imageupload->save();
     Session::flash('Success', 'The Data was successfully saved!');
     return redirect('/addparticipant');
     }

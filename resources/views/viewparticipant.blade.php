@@ -15,10 +15,10 @@
       
             <!-- Modal body -->
             <div class="modal-body">
-                    <table class="table table-bordered"> 
+                    <table class="table table-bordered" id="table"> 
                         {{--  @foreach($usersview as $row)  --}}
-                    <tr>
-                      <td id="id"></td>
+                    <tr >
+                      <td ></td>
                       {{--  <td>{{$row->firstname}}</td>
                       <td>{{$row->filename}}</td>    --}}
                     </tr>
@@ -51,7 +51,7 @@
                 <tr>
                     <td>{{$loop->index+1}}</td>
                     <td>{{$row->firstname}}</td>
-                    <td>{{$row->filename}}</td>
+                    <td><img src="/storage/{{$row->filename}}" width="25px;" height="25px;"></td>
                     <td>
                         <a href="{{ URL::to('participant/show',$row->id) }}" id="user" class="user btn btn-primary" data-toggle="modal" data-target="#myModal" data-id="{{ $row->id }}">View</a>
                         <button type="button" class="btn btn-success">Edit</button>
@@ -88,7 +88,7 @@ let result = [];
           url: "{{URL('/participant/show')}}/"+typeID,
           success: function (data) {
             result = data
-            //console.log(result)
+            console.log(result)
           },
           fail: function () {
               // do something in case of failure
