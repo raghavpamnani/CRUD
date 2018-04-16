@@ -3,37 +3,7 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 @section('content')
-<div class="modal fade" id="myModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-      
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">Modal Heading</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-      
-            <!-- Modal body -->
-            <div class="modal-body">
-                    <table class="table table-bordered" id="table"> 
-                        {{--  @foreach($usersview as $row)  --}}
-                    <tr >
-                      <td ></td>
-                      {{--  <td>{{$row->firstname}}</td>
-                      <td>{{$row->filename}}</td>    --}}
-                    </tr>
-                    {{--  @endforeach  --}}
-                    </table>
-            </div>
-      
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-      
-          </div>
-        </div>
-</div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -51,7 +21,7 @@
                 <tr>
                     <td>{{$loop->index+1}}</td>
                     <td>{{$row->firstname}}</td>
-                    <td><img src="/storage/{{$row->filename}}" width="25px;" height="25px;"></td>
+                    <td><img src="/storage/{{$row->filename}}" width="40px;" height="40px;"></td>
                     <td>
                         <a href="{{ URL::to('participant/show',$row->id) }}" id="user" class="user btn btn-primary" data-toggle="modal" data-target="#myModal" data-id="{{ $row->id }}">View</a>
                         <button type="button" class="btn btn-success">Edit</button>
@@ -65,6 +35,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 @endsection
@@ -87,8 +58,15 @@ let result = [];
           type:"GET",
           url: "{{URL('/participant/show')}}/"+typeID,
           success: function (data) {
-            result = data
-            console.log(result)
+            //result = data
+            //console.log(result)
+                $(".tablenew").empty();
+                //$('.modal-body').append('<table>');
+                $('.tablenew').append('<tr>');
+                $('.tablenew').append('<td>'+data.firstname+'</td>');
+                $('.tablenew').append('<td><img src="/storage/'+data.filename+'" width="40px;" height="40px;"></td>');
+                $('.tablenew').append('</tr>');  
+                //$('.modal-body').append('</table>');   
           },
           fail: function () {
               // do something in case of failure

@@ -10,7 +10,7 @@
       
             <!-- Modal body -->
             <div class="modal-body">
-                    <table class="table table-bordered"> 
+                    <table class="table table-bordered tablenew"> 
                         {{--  @foreach($usersview as $row)  --}}
                     {{--  <tr>
                       <td>{{$row->id}}</td>
